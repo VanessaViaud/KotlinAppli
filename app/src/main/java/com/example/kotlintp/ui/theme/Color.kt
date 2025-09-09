@@ -22,9 +22,9 @@ val horizontalGradientBrush = Brush.horizontalGradient(
 )
 val verticalGradientBrush = Brush.verticalGradient(
     colors = listOf(
-        Color(0xff22232E),
+        Color(0xff1B244F),
         Color(0xff825353),
-        Color(0xff2C397D)
+        Color(0xff1B244F)
     )
 )
 val backgroundColor = Color(0xff3E455C)
@@ -32,3 +32,10 @@ val backgroundColor = Color(0xff3E455C)
 val textColor = Color(0xFFABA6A6)
 
 val textColorButton = Color(0xFFFFFFFF)
+
+val cardColor = Color(0x55FFDEE2)
+
+val cardTextColor = Color(0xFFD9D9D9)
+
+val cardImageColor = Color(0xFF363636)
+

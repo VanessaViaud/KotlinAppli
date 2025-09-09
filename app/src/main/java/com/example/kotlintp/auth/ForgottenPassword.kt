@@ -25,6 +25,8 @@ import androidx.compose.ui.unit.sp
 import com.example.kotlintp.ui.theme.InputButton
 import com.example.kotlintp.ui.theme.KotlinTpTheme
 import com.example.kotlintp.ui.theme.TemplatePage
+import com.example.kotlintp.ui.theme.TextDesign
+import com.example.kotlintp.ui.theme.TextFieldDesign
 import com.example.kotlintp.ui.theme.textColor
 import com.example.kotlintp.ui.theme.textColorButton
 
@@ -56,27 +58,12 @@ fun PasswordPage() {
                     .padding(10.dp)
                     .fillMaxWidth()
             )
-            TextField(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp),
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color.Transparent,
-                    unfocusedContainerColor = Color.Transparent
-                ), onValueChange = { email = it }, value = "", placeholder = {
-                    Text("Email", color = textColorButton)
-                })
+            TextFieldDesign("Email")
             InputButton(
                 onClick = {},
                 "SEND A LINK"
             )
-            Text(
-                "Next time please don't forget your password dude !",
-                color = textColor,
-                fontStyle = FontStyle.Italic,
-                fontSize = 22.sp,
-                modifier = Modifier.padding(10.dp).fillMaxWidth()
-            )
+            TextDesign("Next time please don't forget your password dude !")
         }
     }
 }

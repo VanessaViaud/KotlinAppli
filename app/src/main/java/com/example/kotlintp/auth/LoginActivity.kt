@@ -23,13 +23,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kotlintp.R
+import com.example.kotlintp.ui.theme.IconDesign
 import com.example.kotlintp.ui.theme.InputButton
 import com.example.kotlintp.ui.theme.KotlinTpTheme
 import com.example.kotlintp.ui.theme.TemplatePage
+import com.example.kotlintp.ui.theme.TextDesign
+import com.example.kotlintp.ui.theme.TextFieldDesign
 import com.example.kotlintp.ui.theme.textColor
 import com.example.kotlintp.ui.theme.textColorButton
 
@@ -47,69 +51,26 @@ class LoginActivity : ComponentActivity() {
 fun MainPage() {
     TemplatePage {
         Column(
-
+            horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(10.dp)
                 .padding(top = 50.dp)
+
         ) {
-            var email by remember { mutableStateOf("") }
-            var password by remember { mutableStateOf("") }
-            Icon(
-                painter = painterResource(R.drawable.user_icon),
-                contentDescription = "",
-                modifier = Modifier.size(100.dp),
-                tint = Color.White,
+            IconDesign(R.drawable.user_icon, 100)
+            TextDesign(
+                "Please be aware when you enter credentials in the login page"
             )
-            Text(
-                "Please be aware when you enter credentials in the login page",
-                color = textColor, fontStyle = FontStyle.Italic,
-                fontSize = 24.sp,
-                modifier = Modifier.padding(10.dp)
-            )
-            TextField(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp),
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color.Transparent,
-                    unfocusedContainerColor = Color.Transparent
-                ), onValueChange = { email = it }, value = "", placeholder = {
-                    Text("Email", color = textColorButton)
-                })
-            TextField(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp),
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color.Transparent,
-                    unfocusedContainerColor = Color.Transparent
-                ),
-                onValueChange = { password = it }, value = "", placeholder = {
-                    Text("Password", color = textColorButton)
-                })
-            Text(
-                "Forgot your password ??",
-                color = textColor, fontStyle = FontStyle.Italic,
-                fontSize = 24.sp,
-                modifier = Modifier.padding(10.dp)
-            )
+            TextFieldDesign("Email")
+            TextFieldDesign("Password")
+            TextDesign("Forgot your password ??")
             InputButton(
                 onClick = {},
                 "CONNEXION"
             )
-            Text(
-                "Don't have an account ?",
-                color = textColor, fontStyle = FontStyle.Italic,
-                fontSize = 24.sp,
-                modifier = Modifier.padding(10.dp)
-            )
-            Text(
-                "Register now",
-                color = textColor, fontStyle = FontStyle.Italic,
-                fontSize = 24.sp,
-                modifier = Modifier.padding(10.dp)
-            )
+            TextDesign("Don't have an account ?")
+            TextDesign("Register now")
         }
     }
 }

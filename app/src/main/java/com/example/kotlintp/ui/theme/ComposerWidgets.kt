@@ -3,6 +3,7 @@ package com.example.kotlintp.ui.theme
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -93,16 +94,18 @@ fun CardContainer(content: @Composable () -> Unit) {
 
 @Composable
 fun TextFieldDesign(textContent: String) {
-    var varName by remember { mutableStateOf("") }
+    var textFieldContent by remember { mutableStateOf("") }
     TextField(
-
         modifier = Modifier
             .fillMaxWidth(),
 
         colors = TextFieldDefaults.colors(
             focusedContainerColor = Color.Transparent,
             unfocusedContainerColor = Color.Transparent
-        ), onValueChange = { varName = it }, value = "", placeholder = {
+        ),
+        onValueChange = { textFieldContent = it },
+        value = textFieldContent,
+        placeholder = {
             Text(
                 textContent,
                 color = textColorButton,
@@ -118,6 +121,7 @@ fun InputButton(onClick: () -> Unit, textButton: String = "Invalid") {
         modifier = Modifier
             .fillMaxWidth()
             .padding(0.dp)
+            .padding(vertical = 30.dp)
             .background(brush = horizontalGradientBrush, shape = ButtonDefaults.shape)
             .border(BorderStroke(2.dp, Color.White), shape = ButtonDefaults.shape),
         colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)

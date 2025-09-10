@@ -1,6 +1,5 @@
-package com.example.kotlintp
+package com.example.kotlintp.article
 
-import android.R.attr.offset
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -19,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -26,6 +26,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.kotlintp.R
 import com.example.kotlintp.ui.theme.CardContainer
 import com.example.kotlintp.ui.theme.KotlinTpTheme
 import com.example.kotlintp.ui.theme.TemplatePage
@@ -47,6 +48,7 @@ class ListPage : ComponentActivity() {
 
 @Composable
 fun ListArticlesPage() {
+    val context = LocalContext.current
     var emojis: MutableList<Article> = mutableListOf(
         Article("GLASSES", "emoji with glasses", R.drawable.glasses),
         Article("LOVE", "emoji with hearts for eyes", R.drawable.love),
@@ -59,38 +61,38 @@ fun ListArticlesPage() {
 
 
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
+            horizontalAlignment = Alignment.Companion.CenterHorizontally,
+            modifier = Modifier.Companion
                 .fillMaxSize()
                 .padding(10.dp)
 
         ) {
-            TextDesign("List of contouring emojis")
+            TextDesign("List of emojis in contour look")
             LazyColumn {
                 items(emojis) { emoji ->
                     WrapPadding {
                         CardContainer {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
+                            Row(verticalAlignment = Alignment.Companion.CenterVertically) {
                                 Icon(
                                     painter = painterResource(emoji.imgPath),
                                     contentDescription = (emoji.desc),
-                                    modifier = Modifier
+                                    modifier = Modifier.Companion
                                         .padding(5.dp)
                                         .size(100.dp)
                                         .padding(10.dp),
                                     tint = cardImageColor,
                                 )
-                                Column () {
+                                Column() {
                                     Text(
                                         emoji.title,
-                                        fontWeight = FontWeight.Bold,
-                                        textAlign = TextAlign.Center,
+                                        fontWeight = FontWeight.Companion.Bold,
+                                        textAlign = TextAlign.Companion.Center,
                                         fontSize = 24.sp,
                                         color = cardTextColor,
                                         style = TextStyle(
                                             fontSize = 24.sp,
                                             shadow = Shadow(
-                                                color = Color.Black, blurRadius = 7f
+                                                color = Color.Companion.Black, blurRadius = 7f
                                             )
                                         )
                                     )
@@ -100,8 +102,6 @@ fun ListArticlesPage() {
                                     )
                                 }
                             }
-
-
                         }
                     }
                 }
@@ -119,6 +119,3 @@ fun APreview() {
         ListArticlesPage()
     }
 }
-
-
-

@@ -1,5 +1,6 @@
 package com.example.kotlintp.auth
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -18,10 +19,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.kotlintp.article.ListPage
+import com.example.kotlintp.common.AppContexteHelper
 import com.example.kotlintp.ui.theme.InputButton
 import com.example.kotlintp.ui.theme.KotlinTpTheme
 import com.example.kotlintp.ui.theme.TemplatePage
@@ -42,6 +46,7 @@ class ForgottenPassword : ComponentActivity() {
 
 @Composable
 fun PasswordPage() {
+    val context = LocalContext.current
     TemplatePage {
         Column(
             modifier = Modifier
@@ -60,7 +65,7 @@ fun PasswordPage() {
             )
             TextFieldDesign("Email")
             InputButton(
-                onClick = {},
+                onClick = {AppContexteHelper.openActivity(context, LoginActivity::class)},
                 "SEND A LINK"
             )
             TextDesign("Next time please don't forget your password dude !")

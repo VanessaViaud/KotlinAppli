@@ -1,5 +1,6 @@
 package com.example.kotlintp.auth
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,9 +13,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.kotlintp.article.ListPage
 import com.example.kotlintp.R
+import com.example.kotlintp.common.AppContexteHelper
 import com.example.kotlintp.ui.theme.IconDesign
 import com.example.kotlintp.ui.theme.InputButton
 import com.example.kotlintp.ui.theme.KotlinTpTheme
@@ -34,6 +38,7 @@ class Register : ComponentActivity() {
 
 @Composable
 fun RegisterPage() {
+    val context = LocalContext.current
     TemplatePage {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -53,7 +58,7 @@ fun RegisterPage() {
             TextFieldDesign("Phone Number")
             Spacer(modifier = Modifier.size(20.dp))
             InputButton(
-                onClick = {},
+                onClick = {AppContexteHelper.openActivity(context, LoginActivity::class)},
                 "SIGN IN"
             )
             TextDesign("By registering, i accept the Terms ohf Service and Privacy Policy")

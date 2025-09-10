@@ -1,4 +1,4 @@
-package com.example.kotlintp
+package com.example.kotlintp.article
 
 data class Article (
      var title: String,

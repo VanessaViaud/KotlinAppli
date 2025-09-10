@@ -14,14 +14,33 @@
         <activity
             android:name=".auth.LoginActivity"
             android:exported="true"
-            android:label="@string/title_activity_main"
             android:theme="@style/Theme.KotlinTp"
             tools:ignore="MissingClass">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
 
+        <activity
+            android:name=".auth.Register"
+            android:exported="true"
+            android:theme="@style/Theme.KotlinTp"
+            tools:ignore="MissingClass">
+        </activity>
+
+        <activity
+            android:name=".auth.ForgottenPassword"
+            android:exported="true"
+            android:theme="@style/Theme.KotlinTp"
+            tools:ignore="MissingClass">
+        </activity>
+
+        <activity
+            android:name=".article.ListPage"
+            android:exported="true"
+            android:theme="@style/Theme.KotlinTp"
+            tools:ignore="MissingClass">
         </activity>
     </application>
 </manifest>

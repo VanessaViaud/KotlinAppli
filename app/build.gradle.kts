@@ -61,4 +61,14 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+    // Moshi
+    implementation("com.squareup.moshi:moshi:1.14.0")
+    implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+
+    // Ok HTTP
+    implementation("com.squareup.okhttp3:okhttp:4.9.0")
 }

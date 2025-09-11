@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -27,16 +26,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import com.example.kotlintp.R
 import com.example.kotlintp.ui.theme.CardContainer
 import com.example.kotlintp.ui.theme.InputButton
 import com.example.kotlintp.ui.theme.KotlinTpTheme
 import com.example.kotlintp.ui.theme.TemplatePage
 import com.example.kotlintp.ui.theme.TextDesign
 import com.example.kotlintp.ui.theme.WrapPadding
-import com.example.kotlintp.ui.theme.cardImageColor
 import com.example.kotlintp.ui.theme.cardTextColor
 
 class ListPage : ComponentActivity() {
+
+    lateinit var viewModel: ArticleViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,15 +62,15 @@ fun ListArticlesPage(viewModel: ArticleViewModel) {
                 .fillMaxSize()
                 .padding(10.dp)
         ) {
-            TextDesign("List of emojis in contour look")
+            TextDesign("List of articles")
 
             ArticleListView(viewModel)
 
             InputButton(
                 onClick = {
-                    viewModel.addArticle()
+                    viewModel.callArticlesApi()
                 },
-                textButton = "AJOUTER"
+                textButton = "ADD"
             )
         }
     }
@@ -76,24 +78,27 @@ fun ListArticlesPage(viewModel: ArticleViewModel) {
 
 @Composable
 fun ArticleListView(viewModel: ArticleViewModel) {
-    val articles by viewModel.emojis.collectAsState()
+    
+    val articlesState by viewModel.articles.collectAsState()
+    
     LazyColumn {
-        items(articles) { emoji ->
+        items(articlesState) { article ->
             WrapPadding {
                 CardContainer {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(
-                            painter = painterResource(emoji.imgPath),
-                            contentDescription = emoji.desc,
+                        AsyncImage(
+                            model = article.imgPath,
+                            contentDescription = article.desc,
                             modifier = Modifier
                                 .padding(5.dp)
                                 .size(100.dp)
                                 .padding(10.dp),
-                            tint = cardImageColor,
+                            placeholder = painterResource(R.drawable.thinking),
+
                         )
                         Column {
                             Text(
-                                emoji.title,
+                                article.title,
                                 fontWeight = FontWeight.Bold,
                                 textAlign = TextAlign.Center,
                                 fontSize = 24.sp,
@@ -106,7 +111,7 @@ fun ArticleListView(viewModel: ArticleViewModel) {
                                 )
                             )
                             Text(
-                                emoji.desc,
+                                article.desc,
                                 color = cardTextColor,
                             )
                         }
@@ -116,6 +121,7 @@ fun ArticleListView(viewModel: ArticleViewModel) {
         }
     }
 }
+ 
 
 @Preview(showBackground = true)
 @Composable

@@ -1,12 +1,25 @@
 package com.example.kotlintp.article
 
 import com.example.kotlintp.article.RetrofitTools.Companion.retrofit
+import retrofit2.Response
+import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ArticleService {
 
-    @GET("android-articles.json")
-    suspend fun getArticles(): List<Article>
+    @GET("articles")
+    suspend fun getResponseJson(): ResponseJson
+
+    @GET("articles/{id}")
+    suspend fun getResponseJsonArticle(@Path ("id") articleId: String): ResponseJsonSingle
+
+    @POST("save-article")
+    suspend fun setResponseJsonArticle(articleId: String): ResponseJson
+
+    @DELETE("article/{id}")
+    fun deleteArticle(articleId: String)
 
     object ArticleServiceApi {
 
@@ -15,4 +28,7 @@ interface ArticleService {
             retrofit.create(ArticleService::class.java)
         }
     }
+
+    companion object
 }
+

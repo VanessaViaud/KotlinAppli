@@ -1,5 +1,6 @@
 package com.example.kotlintp.ui.theme
 
+import android.app.ProgressDialog
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -33,6 +34,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kotlintp.R
+import com.example.kotlintp.common.ProgressDialog
 
 @Composable
 fun TemplatePage(content: @Composable () -> Unit) {
@@ -45,6 +47,7 @@ fun TemplatePage(content: @Composable () -> Unit) {
                     .background(brush = verticalGradientBrush)
             ) {
                 content()
+                ProgressDialog()
             }
 
         }

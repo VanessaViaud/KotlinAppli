@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import kotlin.reflect.KClass
 
-class AppContexteHelper {
+class AppContextHelper {
 
     //pour faire une fonction static en kotlin car ça existe pas à proprement parlé
     companion object {

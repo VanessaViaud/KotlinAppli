@@ -34,6 +34,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kotlintp.R
+import com.example.kotlintp.common.AlertDialog
 import com.example.kotlintp.common.ProgressDialog
 
 @Composable
@@ -48,6 +49,7 @@ fun TemplatePage(content: @Composable () -> Unit) {
             ) {
                 content()
                 ProgressDialog()
+                AlertDialog()
             }
 
         }
@@ -96,8 +98,10 @@ fun CardContainer(content: @Composable () -> Unit) {
 }
 
 @Composable
-fun TextFieldDesign(textContent: String) {
-    var textFieldContent by remember { mutableStateOf("") }
+fun TextFieldDesign(label: String,
+                    value: String,
+                    onValueChange: (String) -> Unit) {
+
     TextField(
         modifier = Modifier
             .fillMaxWidth(),
@@ -106,11 +110,11 @@ fun TextFieldDesign(textContent: String) {
             focusedContainerColor = Color.Transparent,
             unfocusedContainerColor = Color.Transparent
         ),
-        onValueChange = { textFieldContent = it },
-        value = textFieldContent,
+        value = value,
+        onValueChange = onValueChange,
         placeholder = {
             Text(
-                textContent,
+                label,
                 color = textColorButton,
             )
         })

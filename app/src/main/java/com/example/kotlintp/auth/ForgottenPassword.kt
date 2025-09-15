@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kotlintp.article.ListPage
-import com.example.kotlintp.common.AppContexteHelper
+import com.example.kotlintp.common.AppContextHelper
 import com.example.kotlintp.ui.theme.InputButton
 import com.example.kotlintp.ui.theme.KotlinTpTheme
 import com.example.kotlintp.ui.theme.TemplatePage
@@ -63,9 +63,10 @@ fun PasswordPage() {
                     .padding(10.dp)
                     .fillMaxWidth()
             )
-            TextFieldDesign("Email")
+            TextFieldDesign("Email", value = email,
+                onValueChange = { email = it })
             InputButton(
-                onClick = {AppContexteHelper.openActivity(context, LoginActivity::class)},
+                onClick = {AppContextHelper.openActivity(context, LoginActivity::class)},
                 "SEND A LINK"
             )
             TextDesign("Next time please don't forget your password dude !")

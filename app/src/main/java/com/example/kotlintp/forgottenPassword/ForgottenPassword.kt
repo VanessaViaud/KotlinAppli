@@ -1,6 +1,5 @@
-package com.example.kotlintp.auth
+package com.example.kotlintp.forgottenPassword
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,28 +9,23 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.kotlintp.article.ListPage
+import com.example.kotlintp.auth.LoginActivity
 import com.example.kotlintp.common.AppContextHelper
 import com.example.kotlintp.ui.theme.InputButton
 import com.example.kotlintp.ui.theme.KotlinTpTheme
 import com.example.kotlintp.ui.theme.TemplatePage
 import com.example.kotlintp.ui.theme.TextDesign
 import com.example.kotlintp.ui.theme.TextFieldDesign
-import com.example.kotlintp.ui.theme.textColor
 import com.example.kotlintp.ui.theme.textColorButton
 
 class ForgottenPassword : ComponentActivity() {

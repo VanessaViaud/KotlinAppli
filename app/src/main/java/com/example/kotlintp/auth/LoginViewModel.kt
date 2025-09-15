@@ -1,7 +1,6 @@
 package com.example.kotlintp.auth
 
 import android.content.Context
-import androidx.compose.ui.platform.LocalGraphicsContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kotlintp.article.ListPage
@@ -9,8 +8,9 @@ import com.example.kotlintp.common.AppProgressHelper
 
 import com.example.kotlintp.common.AppAlertHelpers
 import com.example.kotlintp.common.AppContextHelper
+import com.example.kotlintp.auth.AuthService
+import com.example.kotlintp.auth.LoginRequest
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
 
@@ -25,7 +25,7 @@ data class AuthViewModel(var email: String, var password: String) : ViewModel() 
         viewModelScope.launch {
 
             // Fake wait 1 sec
-            delay(duration = 1.seconds)
+            delay(duration = 2.seconds)
 
             // DTO pour request body a partir des valeurs saisies
             val loginRequest = LoginRequest(email, password)

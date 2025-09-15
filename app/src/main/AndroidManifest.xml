@@ -32,12 +32,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".auth.Register"
+            android:name=".register.Register"
             android:exported="true"
             android:theme="@style/Theme.KotlinTp"
             tools:ignore="MissingClass"/>
         <activity
-            android:name=".auth.ForgottenPassword"
+            android:name=".forgottenPassword.ForgottenPassword"
             android:exported="true"
             android:theme="@style/Theme.KotlinTp"
             tools:ignore="MissingClass"/>

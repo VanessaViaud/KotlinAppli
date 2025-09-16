@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kotlintp.R
 import com.example.kotlintp.common.AppContextHelper
-import com.example.kotlintp.forgottenPassword.ForgottenPassword
+import com.example.kotlintp.resetPassword.ForgottenPassword
 import com.example.kotlintp.register.Register
 import com.example.kotlintp.ui.theme.IconDesign
 import com.example.kotlintp.ui.theme.InputButton

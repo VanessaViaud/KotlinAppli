@@ -1,4 +1,4 @@
-package com.example.kotlintp.forgottenPassword
+package com.example.kotlintp.resetPassword
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,20 +28,33 @@ import com.example.kotlintp.ui.theme.TemplatePage
 import com.example.kotlintp.ui.theme.TextDesign
 import com.example.kotlintp.ui.theme.TextFieldDesign
 import com.example.kotlintp.ui.theme.textColorButton
+import kotlinx.coroutines.flow.MutableStateFlow
 
 class ForgottenPassword : ComponentActivity() {
+
+    lateinit var viewModel: MutableStateFlow<ResetPasswordViewModel>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        viewModel = MutableStateFlow(
+            ResetPasswordViewModel(
+                email = "vv@vv.com"
+            )
+        )
         setContent {
-            PasswordPage()
+            PasswordPage(viewModel)
         }
     }
 }
 
 @Composable
-fun PasswordPage() {
+fun PasswordPage(viewModel: MutableStateFlow<ResetPasswordViewModel>) {
     val context = LocalContext.current
+
+    val viewModelState by viewModel.collectAsState()
+
     TemplatePage {
         Column(
             modifier = Modifier
@@ -48,7 +62,7 @@ fun PasswordPage() {
                 .padding(10.dp)
                 .padding(top = 200.dp)
         ) {
-            var email by remember { mutableStateOf("") }
+
             Text(
                 "Forgot your password ?",
                 color = textColorButton,
@@ -57,10 +71,13 @@ fun PasswordPage() {
                     .padding(10.dp)
                     .fillMaxWidth()
             )
-            TextFieldDesign("Email", value = email,
-                onValueChange = { email = it })
+            TextFieldDesign(
+                "Email", value = viewModelState.email,
+                onValueChange = { value -> viewModel.value.copy(email = value) })
             InputButton(
-                onClick = {AppContextHelper.openActivity(context, LoginActivity::class)},
+                onClick = {
+                    viewModelState.callResetPasswordApi(context)
+                },
                 "SEND A LINK"
             )
             TextDesign("Next time please don't forget your password dude !")
@@ -72,6 +89,7 @@ fun PasswordPage() {
 @Composable
 fun GPreview() {
     KotlinTpTheme {
-        PasswordPage()
+        val viewModel = MutableStateFlow(ResetPasswordViewModel(email = "vv@vv.com"))
+        PasswordPage(viewModel)
     }
 }

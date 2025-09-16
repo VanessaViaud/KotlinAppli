@@ -37,7 +37,7 @@
             android:theme="@style/Theme.KotlinTp"
             tools:ignore="MissingClass"/>
         <activity
-            android:name=".forgottenPassword.ForgottenPassword"
+            android:name=".resetPassword.ForgottenPassword"
             android:exported="true"
             android:theme="@style/Theme.KotlinTp"
             tools:ignore="MissingClass"/>

@@ -46,6 +46,11 @@
             android:exported="true"
             android:theme="@style/Theme.KotlinTp"
             tools:ignore="MissingClass"/>
+        <activity
+            android:name=".article.ArticleEditPage"
+            android:exported="false"
+            android:theme="@style/Theme.KotlinTp"
+            tools:ignore="MissingClass"/>
     </application>
 
 </manifest>

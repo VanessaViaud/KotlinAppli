@@ -38,7 +38,17 @@ class Register : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        viewModel = MutableStateFlow(UserViewModel(email = "vv@vv.com", pseudo="vivi", password = "password", passwordConfirm = "password", cityCode = "44000", city = "SLVJSD", phone = "0234893563"))
+        viewModel = MutableStateFlow(
+            UserViewModel(
+                email = "vv@vv.com",
+                pseudo = "vivi",
+                password = "password",
+                passwordConfirm = "password",
+                cityCode = "44000",
+                city = "SLVJSD",
+                phone = "0234893563"
+            )
+        )
         setContent {
             RegisterPage(viewModel)
         }
@@ -61,19 +71,36 @@ fun RegisterPage(viewModel: MutableStateFlow<UserViewModel>) {
         ) {
             IconDesign(R.drawable.bloc_note, 50)
             TextDesign("Welcome to the registration page")
-            TextFieldDesign("Pseudo", value = viewModelState.pseudo,
+            TextFieldDesign(
+                label = "Pseudo",
+                value = viewModelState.pseudo,
                 onValueChange = { value -> viewModel.value = viewModel.value.copy(pseudo = value) })
-            TextFieldDesign("Email", value = viewModelState.email,
+            TextFieldDesign(
+                label = "Email",
+                value = viewModelState.email,
                 onValueChange = { value -> viewModel.value = viewModel.value.copy(email = value) })
-            TextFieldDesign("Password", value = viewModelState.password,
-                onValueChange = { value -> viewModel.value = viewModel.value.copy(password = value) })
-            TextFieldDesign("Password Confirmation", value = viewModelState.passwordConfirm,
-                onValueChange = { value -> viewModel.value = viewModel.value.copy(passwordConfirm = value) })
-            TextFieldDesign("City Code", value = viewModelState.cityCode,
-                onValueChange = { value -> viewModel.value = viewModel.value.copy(cityCode = value) })
-            TextFieldDesign("City", value = viewModelState.city,
+            TextFieldDesign(
+                label = "Password",
+                value = viewModelState.password,
+                onValueChange = { value ->
+                    viewModel.value = viewModel.value.copy(password = value) })
+            TextFieldDesign(
+                label = "Password Confirmation",
+                value = viewModelState.passwordConfirm,
+                onValueChange = { value ->
+                    viewModel.value = viewModel.value.copy(passwordConfirm = value) })
+            TextFieldDesign(
+                label = "City Code",
+                value = viewModelState.cityCode,
+                onValueChange = { value ->
+                    viewModel.value = viewModel.value.copy(cityCode = value) })
+            TextFieldDesign(
+                label = "City",
+                value = viewModelState.city,
                 onValueChange = { value -> viewModel.value = viewModel.value.copy(city = value) })
-            TextFieldDesign("Phone Number", value = viewModelState.phone,
+            TextFieldDesign(
+                label = "Phone Number",
+                value = viewModelState.phone,
                 onValueChange = { value -> viewModel.value = viewModel.value.copy(phone = value) })
             Spacer(modifier = Modifier.size(20.dp))
             InputButton(
@@ -91,7 +118,17 @@ fun RegisterPage(viewModel: MutableStateFlow<UserViewModel>) {
 @Composable
 fun Preview() {
     KotlinTpTheme {
-        val viewModel = MutableStateFlow(UserViewModel(email = "vv@vv.com", pseudo="vivi", password = "password", passwordConfirm = "password", cityCode = "44000", city = "SLVJSD", phone = "0234893563"))
+        val viewModel = MutableStateFlow(
+            UserViewModel(
+                email = "vv@vv.com",
+                pseudo = "vivi",
+                password = "password",
+                passwordConfirm = "password",
+                cityCode = "44000",
+                city = "SLVJSD",
+                phone = "0234893563"
+            )
+        )
         RegisterPage(viewModel)
     }
 }

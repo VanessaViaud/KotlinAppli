@@ -7,12 +7,16 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -37,6 +41,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import coil.compose.AsyncImage
 import com.example.kotlintp.R
+import com.example.kotlintp.common.AppContextHelper
+import com.example.kotlintp.register.Register
 import com.example.kotlintp.ui.theme.CardContainer
 import com.example.kotlintp.ui.theme.InputButton
 import com.example.kotlintp.ui.theme.KotlinTpTheme
@@ -62,7 +68,7 @@ class ListPage : ComponentActivity() {
 
 @Composable
 fun ListArticlesPage(viewModel: ArticleViewModel) {
-
+    val context =LocalContext.current
     TemplatePage {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -78,8 +84,15 @@ fun ListArticlesPage(viewModel: ArticleViewModel) {
                 onClick = {
                     viewModel.callArticlesApi()
                 },
-                textButton = "ADD"
+                textButton = "LOAD"
             )
+            InputButton(
+                onClick = {
+                    AppContextHelper.openActivity(context, ArticleEditPage::class)
+                },
+                textButton = "MANAGE"
+            )
+
         }
 
     }
@@ -94,7 +107,9 @@ fun ArticleListView(viewModel: ArticleViewModel) {
         items(articlesState) { article ->
             WrapPadding {
                 CardContainer {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
+                    Row(modifier = Modifier.fillMaxWidth().padding(10.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween) {
                         AsyncImage(
                             model = article.imgPath,
                             contentDescription = article.desc,
@@ -105,7 +120,8 @@ fun ArticleListView(viewModel: ArticleViewModel) {
                             placeholder = painterResource(R.drawable.thinking),
 
                             )
-                        Column {
+                        Column(modifier = Modifier.widthIn(min = 40.dp, max = 210.dp),
+                            horizontalAlignment = Alignment.Start) {
                             Text(
                                 article.title,
                                 fontWeight = FontWeight.Bold,
@@ -142,7 +158,17 @@ fun ArticleListView(viewModel: ArticleViewModel) {
                                     }),
                                 tint = Color.White,
                             )
-
+                            Spacer(modifier = Modifier.size(20.dp))
+                            Icon(
+                                painter = painterResource(R.drawable.poubelle),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .size(20.dp)
+                                    .clickable(onClick = {
+                                        viewModel.deleteArticleApi(article.id, context)
+                                    }),
+                                tint = Color.White,
+                            )
                         }
                     }
                 }

@@ -37,7 +37,7 @@ class ArticleViewModel : ViewModel() {
         AppProgressHelper.get().show("Chargement en cours")
 
         viewModelScope.launch {
-            articles.value = ArticleService.ArticleServiceApi.articleService.getResponseJson().data
+            articles.value = ArticleService.ArticleServiceApi.articleService.getResponseJson().data!!
 
 // ici fermer l'écran de chargement
             AppProgressHelper.get().close()

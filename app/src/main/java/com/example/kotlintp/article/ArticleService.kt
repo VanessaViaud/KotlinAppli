@@ -1,6 +1,10 @@
 package com.example.kotlintp.article
 
-import com.example.kotlintp.article.RetrofitTools.Companion.retrofit
+import com.example.kotlintp.api.ApiResponse
+import com.example.kotlintp.api.ResponseJson
+import com.example.kotlintp.api.ResponseJsonDelete
+import com.example.kotlintp.api.ResponseJsonSingle
+import com.example.kotlintp.api.RetrofitTools.Companion.retrofit
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -16,16 +20,16 @@ data class ArticleRequest(
 interface ArticleService {
 
     @GET("articles")
-    suspend fun getResponseJson(): ResponseJson
+    suspend fun getResponseJson(): ApiResponse<List<Article>>
 
     @GET("articles/{id}")
-    suspend fun getResponseJsonArticle(@Path ("id") articleId: String): ResponseJsonSingle
+    suspend fun getResponseJsonArticle(@Path ("id") articleId: String): ApiResponse<Article>
 
     @POST("articles/save")
-    suspend fun setResponseJsonArticle(@Body articleRequest: ArticleRequest): ResponseJsonSingle
+    suspend fun setResponseJsonArticle(@Body articleRequest: ArticleRequest): ApiResponse<Article>
 
     @DELETE("articles/{id}")
-    suspend fun deleteArticle(@Path ("id") articleId: String): ResponseJsonDelete
+    suspend fun deleteArticle(@Path ("id") articleId: String): ApiResponse<Boolean>
 
     object ArticleServiceApi {
 

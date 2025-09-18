@@ -16,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
@@ -68,24 +69,25 @@ fun MainPage(viewModel: MutableStateFlow<AuthViewModel>) {
         ) {
             IconDesign(R.drawable.user_icon, 100)
             TextDesign(
-                "Please be aware when you enter credentials in the login page"
+                stringResource(R.string.text_login_intro)
+
             )
 
             TextFieldDesign(
-                label = "Email",
+                label = stringResource(R.string.field_email_hint),
                 value = viewModelState.email,
                 onValueChange = { value -> viewModel.value = viewModel.value.copy(email = value)},
             )
 
 
             TextFieldDesign(
-                label = "Password",
+                label = stringResource(R.string.field_password_hint),
                 value = viewModelState.password,
                 onValueChange = { value -> viewModel.value = viewModel.value.copy(password = value)}
             )
 
             Text(
-                text = "Forgot your password ??",
+                text = stringResource(R.string.link_reset_password),
                 color = textColor,
                 fontStyle = FontStyle.Italic,
                 textDecoration = TextDecoration.Underline,
@@ -102,12 +104,12 @@ fun MainPage(viewModel: MutableStateFlow<AuthViewModel>) {
                 onClick = {
                     viewModelState.callLoginApi(context)
                 },
-                "CONNEXION"
+                stringResource(R.string.btn_connexion)
             )
-            TextDesign("Don't have an account ?")
+            TextDesign(stringResource(R.string.link_sign_up))
 
             Text(
-                text = "Register now",
+                text = stringResource(R.string.link_register),
                 color = textColor,
                 fontStyle = FontStyle.Italic,
                 textDecoration = TextDecoration.Underline,

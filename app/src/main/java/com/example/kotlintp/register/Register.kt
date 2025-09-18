@@ -18,6 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kotlintp.R
@@ -70,36 +71,36 @@ fun RegisterPage(viewModel: MutableStateFlow<UserViewModel>) {
 
         ) {
             IconDesign(R.drawable.bloc_note, 50)
-            TextDesign("Welcome to the registration page")
+            TextDesign(stringResource(R.string.text_register_intro))
             TextFieldDesign(
-                label = "Pseudo",
+                label = stringResource(R.string.field_pseudo_hint),
                 value = viewModelState.pseudo,
                 onValueChange = { value -> viewModel.value = viewModel.value.copy(pseudo = value) })
             TextFieldDesign(
-                label = "Email",
+                label = stringResource(R.string.field_email_hint),
                 value = viewModelState.email,
                 onValueChange = { value -> viewModel.value = viewModel.value.copy(email = value) })
             TextFieldDesign(
-                label = "Password",
+                label = stringResource(R.string.field_password_hint),
                 value = viewModelState.password,
                 onValueChange = { value ->
                     viewModel.value = viewModel.value.copy(password = value) })
             TextFieldDesign(
-                label = "Password Confirmation",
+                label = stringResource(R.string.field_confirm_password_hint),
                 value = viewModelState.passwordConfirm,
                 onValueChange = { value ->
                     viewModel.value = viewModel.value.copy(passwordConfirm = value) })
             TextFieldDesign(
-                label = "City Code",
+                label = stringResource(R.string.field_city_code_hint),
                 value = viewModelState.cityCode,
                 onValueChange = { value ->
                     viewModel.value = viewModel.value.copy(cityCode = value) })
             TextFieldDesign(
-                label = "City",
+                label = stringResource(R.string.field_city_hint),
                 value = viewModelState.city,
                 onValueChange = { value -> viewModel.value = viewModel.value.copy(city = value) })
             TextFieldDesign(
-                label = "Phone Number",
+                label = stringResource(R.string.field_phone_hint),
                 value = viewModelState.phone,
                 onValueChange = { value -> viewModel.value = viewModel.value.copy(phone = value) })
             Spacer(modifier = Modifier.size(20.dp))
@@ -107,9 +108,9 @@ fun RegisterPage(viewModel: MutableStateFlow<UserViewModel>) {
                 onClick = {
                     viewModelState.callSignUpApi(context)
                 },
-                "SIGN IN"
+                stringResource(R.string.btn_sign_in)
             )
-            TextDesign("By registering, i accept the Terms ohf Service and Privacy Policy")
+            TextDesign(stringResource(R.string.text_accept_policy))
         }
     }
 }

@@ -2,4 +2,41 @@
     <string name="app_name">KotlinTp</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_article_page">ArticlePageActivity</string>
+<!--    login page-->
+    <string name="text_login_intro">Please be aware when you enter credentials in the login page</string>
+    <string name="field_email_hint">Email</string>
+    <string name="field_password_hint">Password</string>
+    <string name="link_reset_password">Forgot your password ??</string>
+    <string name="btn_connexion">CONNEXION</string>
+    <string name="link_register">Register now</string>
+    <string name="link_sign_up">Don\'t have an account ?</string>
+<!--    list of articles page-->
+    <string name="article_title">List of articles</string>
+    <string name="btn_load">LOAD</string>
+    <string name="btn_manage">MANAGE</string>
+<!--    detail of one article page-->
+    <string name="detail_title">Detail of article</string>
+    <string name="field_author_title">Author : </string>
+    <string name="field_description_title">Description : </string>
+<!--    registration page-->
+    <string name="text_register_intro">Welcome to the registration page</string>
+    <string name="field_pseudo_hint">Pseudo</string>
+    <string name="field_confirm_password_hint">Password Confirmation</string>
+    <string name="field_city_code_hint">City Code</string>
+    <string name="field_city_hint">City</string>
+    <string name="field_phone_hint">Phone Number</string>
+    <string name="btn_sign_in">SIGN IN</string>
+    <string name="text_accept_policy">By registering, i accept the Terms ohf Service and Privacy Policy</string>
+<!--    reset password page-->
+    <string name="reset_password_title">Forgot your password ?</string>
+    <string name="btn_reset_password">SEND A LINK</string>
+    <string name="text_reset_password_advice">Next time please don\'t forget your password dude !</string>
+<!--    create or update one article page-->
+    <string name="text_article_title">Create or update an article</string>
+    <string name="field_id_hint">id</string>
+    <string name="field_title_hint">title</string>
+    <string name="field_author_hint">author</string>
+    <string name="field_description_hint">description</string>
+    <string name="field_img_path_hint">image path</string>
+    <string name="btn_save">SAVE</string>
 </resources>

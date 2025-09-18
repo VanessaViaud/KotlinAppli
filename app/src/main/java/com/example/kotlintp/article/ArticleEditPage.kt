@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -58,7 +59,7 @@ fun ArticleEditPage(viewModel: ArticleViewModel) {
                 .fillMaxSize()
                 .padding(10.dp)
         ) {
-            TextDesign("Create or update an article")
+            TextDesign(stringResource(R.string.text_article_title))
 
             ArticleEditView(viewModel)
         }
@@ -77,7 +78,7 @@ fun ArticleEditView(viewModel: ArticleViewModel) {
             Column {
                 viewModelState?.id?.let {
                     TextFieldDesign(
-                        label = "id",
+                        label = stringResource(R.string.field_id_hint),
                         value = it,
                         onValueChange = { value ->
                             viewModel.article.value = viewModel.article.value?.copy(id = value)
@@ -86,7 +87,7 @@ fun ArticleEditView(viewModel: ArticleViewModel) {
                 }
                 viewModelState?.title?.let {
                     TextFieldDesign(
-                        label = "title",
+                        label = stringResource(R.string.field_title_hint),
                         value = it,
                         onValueChange = { value ->
                             viewModel.article.value = viewModel.article.value?.copy(title = value)
@@ -95,7 +96,7 @@ fun ArticleEditView(viewModel: ArticleViewModel) {
                 }
                 viewModelState?.author?.let {
                     TextFieldDesign(
-                        label = "author",
+                        label = stringResource(R.string.field_author_hint),
                         value = it,
                         onValueChange = { value ->
                             viewModel.article.value = viewModel.article.value?.copy(author = value)
@@ -104,7 +105,7 @@ fun ArticleEditView(viewModel: ArticleViewModel) {
                 }
                 viewModelState?.desc?.let {
                     TextFieldDesign(
-                        label = "description",
+                        label = stringResource(R.string.field_description_hint),
                         value = it,
                         onValueChange = { value ->
                             viewModel.article.value = viewModel.article.value?.copy(desc = value)
@@ -113,7 +114,7 @@ fun ArticleEditView(viewModel: ArticleViewModel) {
                 }
                 viewModelState?.imgPath?.let {
                     TextFieldDesign(
-                        label = "image link",
+                        label = stringResource(R.string.field_img_path_hint),
                         value = it,
                         onValueChange = { value ->
                             viewModel.article.value = viewModel.article.value?.copy(imgPath = value)
@@ -126,7 +127,7 @@ fun ArticleEditView(viewModel: ArticleViewModel) {
                         onClick = {
                             viewModel.saveArticleApi(context)
                         },
-                        "SAVE"
+                        stringResource(R.string.btn_save)
                     )
                 }
             }

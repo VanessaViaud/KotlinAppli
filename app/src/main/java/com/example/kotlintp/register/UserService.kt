@@ -1,7 +1,7 @@
 package com.example.kotlintp.register
 
-import com.example.kotlintp.common.ApiResponse
-import com.example.kotlintp.article.RetrofitTools.Companion.retrofit
+import com.example.kotlintp.api.ApiResponse
+import com.example.kotlintp.api.RetrofitTools.Companion.retrofit
 
 import retrofit2.http.Body
 import retrofit2.http.POST

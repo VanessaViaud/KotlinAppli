@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -65,7 +67,7 @@ fun ArticlePage(viewModel: ArticleViewModel) {
                 .fillMaxSize()
                 .padding(10.dp)
         ) {
-            TextDesign("Detail of article")
+            TextDesign(stringResource(R.string.detail_title))
 
             ArticleView(viewModel)
         }
@@ -79,7 +81,7 @@ fun ArticleView(viewModel: ArticleViewModel) {
 
     articleState?.let { article ->
         Box {
-            Row {
+            Column (horizontalAlignment = Alignment.CenterHorizontally){
                 AsyncImage(
                     model = article.imgPath,
                     contentDescription = article.desc,
@@ -90,7 +92,7 @@ fun ArticleView(viewModel: ArticleViewModel) {
                     placeholder = painterResource(R.drawable.thinking),
 
                     )
-                Column {
+                Column (horizontalAlignment = Alignment.Start){
                     Text(
                         article.title,
                         fontWeight = FontWeight.Bold,
@@ -105,11 +107,11 @@ fun ArticleView(viewModel: ArticleViewModel) {
                         )
                     )
                     Text(
-                        article.author,
+                        stringResource(R.string.field_author_title) + article.author,
                         color = cardTextColor,
                     )
                     Text(
-                        article.desc,
+                        stringResource(R.string.field_description_title) + article.desc,
                         color = cardTextColor,
                     )
                 }

@@ -1,9 +1,6 @@
 package com.example.kotlintp.article
 
 import com.example.kotlintp.api.ApiResponse
-import com.example.kotlintp.api.ResponseJson
-import com.example.kotlintp.api.ResponseJsonDelete
-import com.example.kotlintp.api.ResponseJsonSingle
 import com.example.kotlintp.api.RetrofitTools.Companion.retrofit
 import retrofit2.http.Body
 import retrofit2.http.DELETE

@@ -3,10 +3,12 @@ package com.example.kotlintp.register
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.kotlintp.R
 import com.example.kotlintp.auth.LoginActivity
 import com.example.kotlintp.common.AppAlertHelpers
 import com.example.kotlintp.common.AppContextHelper
 import com.example.kotlintp.common.AppProgressHelper
+import com.example.kotlintp.common.commonCallApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
@@ -25,30 +27,23 @@ data class UserViewModel(
 
     fun callSignUpApi(context: Context) {
 
-        AppProgressHelper.get().show("Création de compte en cours")
-        viewModelScope.launch {
+        val loadingMessage = context.getString(R.string.text_register_loading_message)
 
-
-            delay(duration = 2.seconds)
-
-            val userRequest =
-                UserRequest(email, password, passwordConfirm, pseudo, cityCode, city, phone)
-
-            val apiResponse = UserService.UserApi.userService.register(userRequest)
-
-
-            AppProgressHelper.get().close()
-
-            AppAlertHelpers.get().show(apiResponse.message, onClose = {
-
-
-                if (apiResponse.code.equals("200")) {
-                    AppContextHelper.openActivity(context, LoginActivity::class)
-                }
+        commonCallApi<User>(loadingMessage, coroutineScope = viewModelScope, doAction = {
+            val apiResponse = UserService.UserApi.userService.register(
+                UserRequest(
+                    email,
+                    password,
+                    passwordConfirm,
+                    pseudo,
+                    cityCode,
+                    city,
+                    phone
+                )
+            )
+            if (apiResponse.code.equals("200")) {
+                   AppContextHelper.openActivity(context, LoginActivity::class)
+               }
+                apiResponse
             })
-        }
-
-    }
-
-
-}
+        }}

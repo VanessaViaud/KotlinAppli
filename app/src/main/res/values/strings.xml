@@ -8,10 +8,14 @@
     <string name="field_password_hint">Password</string>
     <string name="link_reset_password">Forgot your password ??</string>
     <string name="btn_connexion">CONNEXION</string>
+    <string name="text_login_loading_message">Connexion in progress…</string>
     <string name="link_register">Register now</string>
     <string name="link_sign_up">Don\'t have an account ?</string>
 <!--    list of articles page-->
     <string name="article_title">List of articles</string>
+    <string name="text_delete_loading_message">Deleting article…</string>
+    <string name="text_article_loading_message">Loading article…</string>
+    <string name="text_articles_loading_message">Loading articles…</string>
     <string name="btn_load">LOAD</string>
     <string name="btn_manage">MANAGE</string>
 <!--    detail of one article page-->
@@ -26,11 +30,13 @@
     <string name="field_city_hint">City</string>
     <string name="field_phone_hint">Phone Number</string>
     <string name="btn_sign_in">SIGN IN</string>
+    <string name="text_register_loading_message">Your account is being created…</string>
     <string name="text_accept_policy">By registering, i accept the Terms ohf Service and Privacy Policy</string>
 <!--    reset password page-->
     <string name="reset_password_title">Forgot your password ?</string>
     <string name="btn_reset_password">SEND A LINK</string>
     <string name="text_reset_password_advice">Next time please don\'t forget your password dude !</string>
+    <string name="text_reset_password_loading_message">Reseting password…</string>
 <!--    create or update one article page-->
     <string name="text_article_title">Create or update an article</string>
     <string name="field_id_hint">id</string>
@@ -38,5 +44,7 @@
     <string name="field_author_hint">author</string>
     <string name="field_description_hint">description</string>
     <string name="field_img_path_hint">image path</string>
+    <string name="text_article_saving_message">Saving article…</string>
     <string name="btn_save">SAVE</string>
+
 </resources>

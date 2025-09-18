@@ -3,6 +3,7 @@ package com.example.kotlintp.auth
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.kotlintp.R
 import com.example.kotlintp.article.ListPage
 import com.example.kotlintp.common.AppProgressHelper
 
@@ -10,6 +11,7 @@ import com.example.kotlintp.common.AppAlertHelpers
 import com.example.kotlintp.common.AppContextHelper
 import com.example.kotlintp.auth.AuthService
 import com.example.kotlintp.auth.LoginRequest
+import com.example.kotlintp.common.commonCallApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
@@ -18,38 +20,50 @@ data class AuthViewModel(var email: String, var password: String) : ViewModel() 
 
 
     fun callLoginApi(context: Context){
+        val loadingMessage = context.getString(R.string.text_login_loading_message)
 
-        // Affiche un ecran de chargement avant un appel async
-        AppProgressHelper.get().show("Tentative de connexion")
-
-        viewModelScope.launch {
-
-            // Fake wait 1 sec
-            delay(duration = 2.seconds)
-
-            // DTO pour request body a partir des valeurs saisies
-            val loginRequest = LoginRequest(email, password)
-
-            val apiResponse = AuthService.AuthApi.authService.login(loginRequest)
-
-            // Fermer ecran de chargement à la fin de l'appel async
-            AppProgressHelper.get().close()
-
-            // Stocker le token
+        commonCallApi<String>(loadingMessage, viewModelScope, doAction = {
+            val apiResponse = AuthService.AuthApi.authService.login(LoginRequest(email, password))
             if (apiResponse.code.equals("200")){
-                AuthContext.get().setAuthToken(apiResponse.data!!);
+                AuthContext.get().setAuthToken(apiResponse.data!!)
             }
+            AppContextHelper.openActivity(context, ListPage::class)
+            apiResponse
+        })
+    }}
 
-            // Afficher le message du back
-            AppAlertHelpers.get().show(apiResponse.message, onClose = {
-                // Si Code success alors ouvrir la page list article
-                if (apiResponse.code.equals("200")){
-                    AppContextHelper.openActivity(context, ListPage::class)
-                }
-            })
-        }
+//
+//        // Affiche un ecran de chargement avant un appel async
+//        AppProgressHelper.get().show("Tentative de connexion")
+//
+//        viewModelScope.launch {
+//
+//            // Fake wait 1 sec
+//            delay(duration = 2.seconds)
+//
+//            // DTO pour request body a partir des valeurs saisies
+//            val loginRequest = LoginRequest(email, password)
+//
+//            val apiResponse = AuthService.AuthApi.authService.login(loginRequest)
+//
+//            // Fermer ecran de chargement à la fin de l'appel async
+//            AppProgressHelper.get().close()
+//
+//            // Stocker le token
+//            if (apiResponse.code.equals("200")){
+//                AuthContext.get().setAuthToken(apiResponse.data!!);
+//            }
+//
+//            // Afficher le message du back
+//            AppAlertHelpers.get().show(apiResponse.message, onClose = {
+//                // Si Code success alors ouvrir la page list article
+//                if (apiResponse.code.equals("200")){
+//                    AppContextHelper.openActivity(context, ListPage::class)
+//                }
+//            })
+//        }
+//
+//    }
 
-    }
 
 
-}

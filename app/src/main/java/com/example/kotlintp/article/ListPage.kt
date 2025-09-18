@@ -77,7 +77,7 @@ fun ListArticlesPage(viewModel: ArticleViewModel) {
 
             InputButton(
                 onClick = {
-                    viewModel.callArticlesApi()
+                    viewModel.callArticlesApi(context)
                 },
                 textButton = stringResource(R.string.btn_load)
             )

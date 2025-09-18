@@ -46,7 +46,7 @@ class ArticlePage : ComponentActivity() {
         viewModel = ArticleViewModel()
 
         articleId?.let {
-            viewModel.callOneArticleApi(articleId)
+            viewModel.callOneArticleApi(articleId, context = this)
         }
 
         enableEdgeToEdge()
